@@ -1,0 +1,35 @@
+{% extends 'master/base.html' %}
+
+{% block page_title %}
+    {{title}}
+{% endblock page_title %}
+
+
+{% block content %}
+<h1>Profile Iinformation</h1> 
+<p>Username: {{request.user.username}}</p>
+<p>Name: {{request.user.user_profile.name}}</p>
+<p>Gender: {{request.user.user_profile.gender}}</p>
+<p>Height: {{request.user.user_profile.height}} cm</p>
+<p>Age: {{request.user.user_profile.age}}</p>
+<p>Weight: {{request.user.user_profile.weight}} kg</p>
+<p>BMR: {{request.user.user_profile.bmr}} kcal/day</p>
+<p>Picture:</p>
+
+{% if request.user.user_profile.image %}
+    <img
+        src="{{ request.user.user_profile.image.url }}"
+        alt="Profile Picture"
+        width="90"
+        height="90"
+    >
+{% else %}
+    <p>No profile picture uploaded.</p>
+{% endif %}
+
+
+
+<p><a href="{% url 'profile_update_view' %}" class="btn btn-primary">Update Profile</a></p>
+    
+{% endblock content %}
+    
